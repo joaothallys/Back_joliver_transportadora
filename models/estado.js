@@ -71,6 +71,21 @@ class Estado {
       throw error;
     }
   }
-}
 
+  static async update(id, data) {
+    try {
+      const [result] = await pool.query(
+        'UPDATE Estado SET nome_estado = ?, icms_local = ?, uf = ?, icms_outro_uf = ? WHERE id_estado = ?',
+        [data.nome_estado, data.icms_local, data.uf, data.icms_outro_uf, id]
+      );
+      if (result.affectedRows === 0) {
+        throw new Error(`Estado com ID ${id} não encontrado.`);
+      }
+      return { id_estado: id, ...data };
+    } catch (error) {
+      console.error(`Erro ao atualizar estado com ID ${id}:`, error.message);
+      throw error;
+    }
+  }
+}
 module.exports = Estado;

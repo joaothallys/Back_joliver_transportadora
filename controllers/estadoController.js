@@ -53,3 +53,16 @@ exports.deleteEstado = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+// Atualiza um estado existente
+exports.updateEstado = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { nome_estado, icms_local, uf, icms_outro_uf } = req.body;
+    const estadoAtualizado = await Estado.update(id, { nome_estado, icms_local, uf, icms_outro_uf });
+    res.json({ message: 'Estado atualizado com sucesso!', estado: estadoAtualizado });
+  } catch (error) {
+    console.error(`Erro ao atualizar estado com ID ${req.params.id}:`, error.message);
+    res.status(404).json({ error: error.message });
+  }
+};
