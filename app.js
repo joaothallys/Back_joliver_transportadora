@@ -36,6 +36,9 @@ const freteRoutes = require('./routes/freteRoutes');
 const funcionarioRoutes = require('./routes/funcionarioRoutes');
 const pessoaFisicaRoutes = require('./routes/pessoaFisicaRoutes');
 const pessoaJuridicaRoutes = require('./routes/pessoaJuridicaRoutes');
+const arrecadacaoFretesRoutes = require('./routes/arrecadacaoFretes');
+const mediaFretesRoutes = require('./routes/mediaFretes');
+const fretesFuncionariosRoutes = require('./routes/fretesFuncionarios');
 
 // Registrar as rotas
 app.use('/api/estados', estadoRoutes);
@@ -46,6 +49,9 @@ app.use('/api/fretes', freteRoutes);
 app.use('/api/funcionarios', funcionarioRoutes);
 app.use('/api/pessoas-fisicas', pessoaFisicaRoutes);
 app.use('/api/pessoas-juridicas', pessoaJuridicaRoutes);
+app.use('/arrecadacao-fretes', arrecadacaoFretesRoutes);
+app.use('/media-fretes', mediaFretesRoutes);
+app.use('/fretes-funcionarios', fretesFuncionariosRoutes);
 
 // Inicializar o servidor
 const PORT = process.env.PORT || 3000;
